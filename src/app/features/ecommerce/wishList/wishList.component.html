@@ -1,0 +1,55 @@
+<app-header></app-header>
+<div class="flex h-screen flex-col">
+  <div
+    class="mt-10 flex justify-center font-sans text-[30px] text-purple-600"
+    *ngIf="(wishList$ | async)?.length === 0"
+  >
+    Vous n'avez pas encore choisi des produits favoris
+  </div>
+
+  <div
+    class="grig-cols-1 grid gap-8 p-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    *ngIf="(wishList$ | async)!.length > 0"
+  >
+    <div
+      class="border-1 rounded-md border border-gray-200 bg-white transition-colors hover:border-purple-600 hover:bg-gray-50"
+      *ngFor="let product of wishList$ | async"
+    >
+      <div class="max-w-30 h-15 container flex flex-1">
+        <img
+          src="{{ 'data:image/jpg;base64,' + product.image }}"
+          alt=""
+          class="h-48 w-full rounded-lg object-cover transition-transform hover:rotate-1 hover:scale-105"
+        />
+      </div>
+      <div class="p-4">
+        <h3 class="text-lg">
+          {{ product.description }}
+        </h3>
+        <h5 class="font-bold">{{ product.price | currency : "EUR" : "symbol" }}</h5>
+      </div>
+      <div class="flex justify-between justify-items-end px-4 py-3">
+        <button
+          class="border-1 flex h-10 w-10 items-center justify-center rounded-full border border-purple-600 text-purple-600 transition-colors hover:bg-purple-600 hover:text-white active:bg-purple-800"
+          (click)="deleteFromWishList(product.productId)"
+        >
+          <svg
+            aria-hidden="true"
+            class="h-6 w-6"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </button>
+        <button class="btn-primary">Ajouter au panier</button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,111 @@
+{
+  "root": true,
+  "ignorePatterns": ["src/index.html"],
+  "plugins": ["@typescript-eslint", "simple-import-sort", "import"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.js"],
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended",
+        "airbnb-typescript/base"
+      ],
+      "rules": {
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "prefix": "app",
+            "style": "kebab-case",
+            "type": "element"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "prefix": "app",
+            "style": "camelCase",
+            "type": "attribute"
+          }
+        ],
+        "sort-imports": "off",
+        "import/order": "off",
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              ["^\\u0000"],
+              ["^@?\\w"],
+              ["^(@features|@shared|@environments|@core)(/.*|$)"],
+              ["^\\.\\.(?!/?$)', '^\\.\\./?$"],
+              ["^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$"]
+            ]
+          }
+        ],
+        "import/no-extraneous-dependencies": [
+          "error",
+           {
+            "devDependencies": ["**/*.spec.ts"]
+            }
+          ],
+        "@typescript-eslint/no-duplicate-enum-values": "error",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "import/newline-after-import": "error",
+        "import/no-duplicates": "error",
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/brace-style": "off",
+        "@typescript-eslint/comma-dangle": "off",
+        "@typescript-eslint/comma-spacing": "off",
+        "@typescript-eslint/func-call-spacing": "off",
+        "@typescript-eslint/indent": "off",
+        "@typescript-eslint/keyword-spacing": "off",
+        "@typescript-eslint/no-extra-semi": "off",
+        "@typescript-eslint/object-curly-spacing": "off",
+        "@typescript-eslint/semi": "off",
+        "@typescript-eslint/space-before-function-paren": "off",
+        "@typescript-eslint/space-infix-ops": "off",
+        "prettier/prettier": [
+          "error",
+          {
+            "endOfLine": "auto"
+          }
+        ]
+      },
+      "overrides": [
+        {
+          "files": ["**/*.ts"],
+          "rules": {
+            "@typescript-eslint/explicit-function-return-type": "warn"
+          }
+        }
+      ]
+    },
+    {
+      "files": ["*.html"],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:prettier/recommended",
+        "plugin:tailwindcss/recommended"
+      ],
+      "excludedFiles": ["src/index.html"],
+      "rules": {
+        "tailwindcss/classnames-order": "off",
+        "tailwindcss/enforces-negative-arbitrary-values": "warn",
+        "tailwindcss/enforces-shorthand": "warn",
+        "tailwindcss/migration-from-tailwind-2": "warn",
+        "tailwindcss/no-arbitrary-value": "off",
+        "tailwindcss/no-custom-classname": [
+          "warn",
+          {
+            "whitelist": ["ia\\-icon\\-(.*)"]
+          }
+        ],
+        "tailwindcss/no-contradicting-classname": "error"
+      }
+    }
+  ]
+}

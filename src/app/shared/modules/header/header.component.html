@@ -1,0 +1,108 @@
+<header
+  class="sticky top-0 z-50 w-full bg-purple-700 px-4 py-4 sm:flex sm:items-center sm:justify-between"
+>
+  <div class="flex justify-between sm:block">
+    <img
+      src="../../../../assets/images/logo-f-b.png"
+      alt="agence évènementiel"
+      class="h-[50px] w-[160px]"
+      routerLink="/home"
+    />
+
+    <button class="block bg-transparent sm:hidden">
+      <input class="invisible appearance-none" type="checkbox" id="toggle" />
+
+      <label for="toggle">
+        <svg
+          id="menu-icon"
+          class="inline-block cursor-pointer text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          style="fill: rgba(255, 255, 255, 1)"
+        >
+          <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+        </svg>
+
+        <svg
+          id="close-icon"
+          class="hidden cursor-pointer text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          style="fill: rgba(255, 255, 255, 1)"
+        >
+          <path
+            d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"
+          ></path>
+        </svg>
+      </label>
+    </button>
+  </div>
+  <div
+    #linksDiv
+    id="navigation"
+    style="--menu-height: {{ linksDiv.children.length * 2.5 }}rem"
+    class="flex h-0 flex-col items-center gap-4 overflow-hidden font-sans text-white transition-all duration-500 ease-in-out sm:h-auto sm:flex-row sm:overflow-auto"
+  >
+    <button
+      class="flex w-full flex-col items-center hover:font-semibold hover:text-gray-200"
+      routerLink="/home"
+      routerLinkActive="active-link"
+    >
+      Accueil
+    </button>
+    <button
+      class="flex w-full flex-col items-center hover:font-semibold hover:text-gray-200"
+      routerLink="/login"
+      routerLinkActive="active-link"
+      *ngIf="!isConnected"
+    >
+      Connexion
+    </button>
+    <button
+      class="flex w-full flex-col items-center hover:font-semibold hover:text-gray-200"
+      type="button"
+      *ngIf="isConnected"
+      (click)="logOut()"
+    >
+      Déconnexion
+    </button>
+    <button
+      class="flex w-full flex-col items-center hover:font-semibold hover:text-gray-200"
+      routerLink="/signup"
+      routerLinkActive="active-link"
+    >
+      S'inscrire
+    </button>
+    <button
+      class="flex w-full flex-col items-center hover:font-semibold hover:text-gray-200"
+      routerLink="/products"
+      routerLinkActive="active-link"
+    >
+      produits
+    </button>
+    <button
+      class="flex w-full flex-col items-center hover:font-semibold hover:text-gray-200"
+      routerLink="/wishlist"
+      routerLinkActive="active-link"
+      *ngIf="isConnected"
+    >
+      Wishlist
+    </button>
+
+    <button
+      class="flex w-full flex-col items-center hover:font-semibold hover:text-gray-200"
+      routerLink="/admin"
+      routerLinkActive="active-link"
+      *ngIf="isConnectedAdmin"
+    >
+      Admin
+    </button>
+
+    <ng-content></ng-content>
+  </div>
+</header>
+<hr class="bg-gray-800" />

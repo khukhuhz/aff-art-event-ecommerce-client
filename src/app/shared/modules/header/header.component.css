@@ -1,0 +1,24 @@
+:host {
+  display: block;
+}
+
+@media screen and (max-width: 639px) {
+  header:has(#toggle:checked) #navigation {
+    height: var(--menu-height, 10rem);
+  }
+
+  header:has(#toggle:checked) #menu-icon {
+    display: none;
+  }
+
+  header:has(#toggle:checked) #close-icon {
+    display: inline-block;
+  }
+}
+
+.active-link {
+  color: rgb(126 34 206);
+  background-color: aliceblue;
+  border-radius: 5px;
+  padding: 6px;
+}
